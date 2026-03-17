@@ -27,7 +27,7 @@ Latent Posterior Factors (LPF) is introduced across a series of papers:
 
 The official implementation is currently in preparation.
 
-📅 **Release:** April 2026
+📅 **Release:** 30th of April 2026
 
 The release will include:
 - Core LPF framework  
