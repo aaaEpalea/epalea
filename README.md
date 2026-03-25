@@ -2,9 +2,7 @@
 
 Research and systems for multi-evidence reasoning, uncertainty quantification, and probabilistic inference.
 
-<p align="center">
-  <img src="figures/pipeline_diagram.svg" alt="LPF Pipeline Diagram" width="600"/>
-</p>
+
 
 ---
 
