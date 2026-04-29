@@ -1,0 +1,163 @@
+# Epalea — Latent Posterior Factors (LPF)
+
+Research and systems for multi-evidence reasoning, uncertainty quantification, and probabilistic inference.
+
+[![LPF Pipeline Diagram](figures/pipeline_diagram.svg)](figures/pipeline_diagram.svg)
+
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Weight License](https://img.shields.io/badge/Weights-Epalea%20Weight%20License-orange)](pretrained/WEIGHT_LICENSE.md)
+[![Docs](https://img.shields.io/badge/docs-epalea.ai%2Fdocs-green)](https://epalea.ai/docs)
+
+LPF (Latent Factor Posteriors) encodes evidence items into latent Gaussian posteriors,
+then decodes them into soft likelihood factors for tractable Sum-Product Network reasoning.
+
+## Quick Install
+
+```bash
+pip install epalea
+```
+
+## 5-Minute Quickstart
+
+```python
+import epalea
+
+model = epalea.load_model("compliance-v1")  # downloads from HF automatically
+
+result = model.infer(entity_id="C0001", mode="both")
+print(result.results.spn.prediction)        # "high"
+print(result.results.aggregator.confidence) # 0.81
+print(result.uncertainty.epistemic)         # 0.12
+```
+
+## CLI
+
+```bash
+epalea generate-data --domain compliance --n-entities 300
+epalea train         --config ./user_workspace/configs/train.yaml
+epalea index         --config ./user_workspace/configs/index.yaml
+epalea train-aggregator --config ./user_workspace/configs/train_aggregator.yaml
+epalea infer         --entity-id C0001 --mode both
+```
+
+## Pretrained Weights
+
+| Model | Domain | Hugging Face |
+|---|---|---|
+| `compliance-v1` | Compliance scoring | [aaaEpalea/epalea-compliance-v1](https://huggingface.co/aaaEpalea/epalea-compliance-v1) |
+
+Weights download automatically on first use — no manual setup needed:
+
+```python
+model = epalea.load_model("compliance-v1")  # downloads from HF on first call
+```
+
+## Papers
+
+Latent Posterior Factors (LPF) is developed across a structured research program:
+
+### Core Framework
+
+**I Know What I Don't Know: Latent Posterior Factor Models for Multi-Evidence Probabilistic Reasoning**
+Introduces LPF as a unified probabilistic framework for aggregating multi-source evidence with calibrated uncertainty.
+- arXiv: https://arxiv.org/abs/2603.15670
+- Zenodo: https://zenodo.org/records/19183861
+
+**Theoretical Foundations of Latent Posterior Factors: Formal Guarantees for Multi-Evidence Reasoning**
+Provides formal guarantees, theoretical grounding, and convergence properties of LPF models.
+- arXiv: https://arxiv.org/abs/2603.15674
+- Zenodo: https://zenodo.org/records/19184458
+
+---
+
+### Architecture & Systems Analysis
+
+**Dissecting Hybrid Neuro-Symbolic Systems: An Architectural Ablation Study of the Latent Probabilistic Framework**
+Analyzes LPF components through ablation to identify contributions of architecture modules.
+- Zenodo: https://zenodo.org/records/19186405
+
+---
+
+### Safety & Decision-Making
+
+**Safety-Critical Decision Making for Autonomous Machines: A Probabilistic Framework with Uncertainty-Based Human Handoff**
+Proposes uncertainty-aware decision thresholds enabling safe human intervention.
+- Zenodo: https://zenodo.org/records/19187781
+
+---
+
+### Generalization & Transfer
+
+**Cross-Domain Transfer and Calibration Analysis for Latent Probabilistic Frameworks**
+Studies generalization and calibration behavior of LPF across domains.
+- Zenodo: https://zenodo.org/records/19201876
+
+---
+
+### Reasoning & Verification
+
+**Exact Uncertainty Decomposition for Multi-Evidence Fact Verification: A Formal Alternative to LLM-Based Reasoning**
+Introduces exact decomposition of uncertainty for verifiable multi-evidence reasoning.
+- Zenodo: https://zenodo.org/records/19202524
+
+---
+
+### Robustness
+
+**Robustness Under Noise: A Comprehensive Analysis of Latent Factor Posterior Models in Noisy Compliance Environments**
+Evaluates LPF stability and degradation under structured and unstructured noise.
+- Zenodo: https://zenodo.org/records/19203043
+
+---
+
+### Scientific Applications
+
+**Uncertainty-Aware Quantum State Tomography via Latent Posterior Factors: A Multi-Evidence Aggregation Approach**
+Applies LPF to quantum state reconstruction with uncertainty-aware inference.
+- Zenodo: https://zenodo.org/records/19203267
+
+---
+
+### Scalability
+
+**Scalability of Latent Factor Posteriors to Varying Evidence Pool Sizes**
+Examines how LPF scales with increasing number and diversity of evidence sources.
+- Zenodo: https://zenodo.org/records/19203493
+
+---
+
+### Interpretability & UX
+
+**Understanding Provenance: A User Study on Explainability in Probabilistic Multi-Evidence Reasoning Systems**
+Investigates user understanding of LPF explanations and provenance tracking.
+- Zenodo: https://zenodo.org/records/19203617
+
+## About Epalea
+
+Epalea is a research-driven effort focused on building reliable and interpretable AI systems grounded in principled probabilistic reasoning.
+
+https://epalea.com
+
+## License
+
+- **Source code** — [Apache License 2.0](LICENSE)
+- **Pretrained weights** — [Epalea Model Weight License](pretrained/WEIGHT_LICENSE.md)
+
+Commercial weight licensing: licensing@epalea.ai
+
+## Citation
+
+```bibtex
+@article{epalea2026lpf,
+  title  = {Epalea: Latent Factor Posteriors for Evidential Inference},
+  author = {Epalea Team},
+  year   = {2026},
+  url    = {https://epalea.ai}
+}
+```
+
+## Documentation
+
+Full documentation at [epalea.ai/docs](https://epalea.ai/docs)
+
+*Star the repository to follow progress.*

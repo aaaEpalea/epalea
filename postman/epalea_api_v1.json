@@ -1,0 +1,240 @@
+{
+  "info": {
+    "name": "epalea API v1",
+    "_postman_id": "epalea-api-v1",
+    "description": "Epalea LPF API \u2014 https://epalea.ai/docs/api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{api_key}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://epalea.ai/api/v1"
+    },
+    {
+      "key": "api_key",
+      "value": "ek_live_your_key_here"
+    }
+  ],
+  "item": [
+    {
+      "name": "Models",
+      "item": [
+        {
+          "name": "List Models",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/models",
+            "description": "List all available pretrained models."
+          }
+        },
+        {
+          "name": "Get Model",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/models/compliance-v1",
+            "description": "Get metadata for compliance-v1."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inference",
+      "item": [
+        {
+          "name": "Single Inference \u2014 SPN (Live)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/infer",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model_id\": \"compliance-v1\",\n  \"entity_id\": \"C0042\",\n  \"evidence\": [\n    {\n      \"evidence_id\": \"C0042_E001\",\n      \"text_content\": \"Company demonstrates strong compliance with timely filings.\",\n      \"credibility\": 0.9,\n      \"evidence_type\": \"audit_report\"\n    }\n  ],\n  \"options\": {\n    \"mode\": \"spn\",\n    \"output_format\": \"nested\",\n    \"top_k\": 5,\n    \"n_samples\": 4,\n    \"temperature\": 0.8,\n    \"alpha\": 0.1\n  }\n}"
+            },
+            "description": "Run SPN inference. Returns prediction + uncertainty decomposition."
+          }
+        },
+        {
+          "name": "Single Inference \u2014 Both Modes (Coming Soon Demo)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/infer",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model_id\": \"compliance-v1\",\n  \"entity_id\": \"C0042\",\n  \"evidence\": [\n    {\n      \"evidence_id\": \"C0042_E001\",\n      \"text_content\": \"Strong compliance record.\",\n      \"credibility\": 0.9\n    }\n  ],\n  \"options\": {\n    \"mode\": \"both\",\n    \"output_format\": \"nested\"\n  }\n}"
+            },
+            "description": "mode: both \u2014 currently returns coming-soon JSON + SPN fallback."
+          }
+        },
+        {
+          "name": "Batch Inference (Live)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/infer/batch",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model_id\": \"compliance-v1\",\n  \"entities\": [\n    {\n      \"entity_id\": \"C0001\",\n      \"evidence\": [\n        {\n          \"evidence_id\": \"E001\",\n          \"text_content\": \"Strong compliance.\"\n        }\n      ]\n    },\n    {\n      \"entity_id\": \"C0002\",\n      \"evidence\": [\n        {\n          \"evidence_id\": \"E002\",\n          \"text_content\": \"Multiple violations found.\"\n        }\n      ]\n    }\n  ],\n  \"options\": {\n    \"mode\": \"spn\",\n    \"top_k\": 5\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Evaluate",
+      "item": [
+        {
+          "name": "Evaluate (Live \u2014 SPN)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/evaluate",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model_id\": \"compliance-v1\",\n  \"entities\": [\n    {\n      \"entity_id\": \"C0001\",\n      \"true_label\": \"high\",\n      \"evidence\": [\n        {\n          \"evidence_id\": \"E001\",\n          \"text_content\": \"Strong compliance.\"\n        }\n      ]\n    },\n    {\n      \"entity_id\": \"C0002\",\n      \"true_label\": \"low\",\n      \"evidence\": [\n        {\n          \"evidence_id\": \"E002\",\n          \"text_content\": \"Multiple violations.\"\n        }\n      ]\n    }\n  ],\n  \"options\": {\n    \"mode\": \"spn\"\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Data",
+      "item": [
+        {
+          "name": "Generate Data",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/data/generate",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domain\": \"compliance\",\n  \"n_entities\": 100,\n  \"years\": [\n    2022\n  ],\n  \"evidence_per_entity\": 5\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Training (Coming Soon)",
+      "item": [
+        {
+          "name": "Train LPF (Coming Soon)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/models/train",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domain\": \"compliance\",\n  \"predicate\": \"compliance_level\"\n}"
+            },
+            "description": "Returns coming-soon stub."
+          }
+        },
+        {
+          "name": "Index Evidence (Coming Soon)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/models/index",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model_id\": \"compliance-v1\"\n}"
+            },
+            "description": "Returns coming-soon stub."
+          }
+        },
+        {
+          "name": "Train Aggregator (Coming Soon)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/models/train-aggregator",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model_id\": \"compliance-v1\"\n}"
+            },
+            "description": "Returns coming-soon stub."
+          }
+        },
+        {
+          "name": "Train Full (Coming Soon)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/models/train-full",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domain\": \"compliance\"\n}"
+            },
+            "description": "Returns coming-soon stub."
+          }
+        }
+      ]
+    }
+  ]
+}

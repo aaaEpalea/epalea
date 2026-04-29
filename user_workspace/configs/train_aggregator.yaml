@@ -1,0 +1,16 @@
+# epalea train-aggregator — config
+# Run: epalea train-aggregator --config ./user_workspace/configs/train_aggregator.yaml
+
+checkpoint: ./user_workspace/checkpoints/[your_domain]/best_model.pt
+schema: ./user_workspace/checkpoints/[your_domain]/schema.json
+
+# index_dir and data_dir are the same: epalea train writes the index into data_dir.
+index_dir: ./user_workspace/data/[your_domain]
+data_dir: ./user_workspace/data/[your_domain]
+
+aggregator_checkpoint_dir: ./user_workspace/checkpoints/[your_domain]
+latent_dim: 64
+hidden_dim: 128
+dropout: 0.1
+epochs: 30
+learning_rate: 0.001

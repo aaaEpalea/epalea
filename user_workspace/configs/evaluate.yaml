@@ -1,0 +1,21 @@
+# epalea evaluate — config
+# Run: epalea evaluate --config ./user_workspace/configs/evaluate.yaml
+
+checkpoint: ./user_workspace/checkpoints/[your_domain]/best_model.pt
+aggregator_checkpoint: ./user_workspace/checkpoints/[your_domain]/aggregator.pt
+schema: ./user_workspace/checkpoints/[your_domain]/schema.json
+index_dir: ./user_workspace/data/[your_domain]
+test_companies: ./user_workspace/data/[your_domain]/test_companies.json
+
+# To evaluate a pretrained model instead, replace the five lines above with:
+# checkpoint: ./pretrained/compliance-v1/best_model.pt
+# aggregator_checkpoint: ./pretrained/compliance-v1/aggregator.pt
+# schema: ./pretrained/compliance-v1/schema.json
+# index_dir: ./pretrained/compliance-v1/evidence_index
+# test_companies: ./pretrained/compliance-v1/sample_data/test_companies.json
+
+output_dir: ./user_workspace/results/[your_domain]
+mode: both
+output_format: nested
+top_k: 5
+n_samples: 4

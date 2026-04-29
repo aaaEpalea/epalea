@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+**/*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+
+# Model weights — on Hugging Face, not git
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# Vector indices — large binary
+*.faiss
+
+# Pretrained weights directories
+pretrained/
+
+# Notebooks runtime artifacts
+notebooks/pretrained/
+notebooks/user_workspace/
+
+# User workspace — user-generated, never commit
+user_workspace/data/**
+user_workspace/checkpoints/**
+user_workspace/index/**
+user_workspace/results/**
+!user_workspace/configs/*.yaml
+!user_workspace/**/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

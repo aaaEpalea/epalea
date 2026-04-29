@@ -1,0 +1,21 @@
+# epalea infer — config
+# Run: epalea infer --config ./user_workspace/configs/infer.yaml --entity-id [entity_id]
+# --entity-id must always be passed inline; it cannot be set in a config file.
+
+checkpoint: ./user_workspace/checkpoints/[your_domain]/best_model.pt
+aggregator_checkpoint: ./user_workspace/checkpoints/[your_domain]/aggregator.pt
+schema: ./user_workspace/checkpoints/[your_domain]/schema.json
+index_dir: ./user_workspace/data/[your_domain]
+
+# To use a pretrained model instead, replace the four lines above with:
+# checkpoint: ./pretrained/compliance-v1/best_model.pt
+# aggregator_checkpoint: ./pretrained/compliance-v1/aggregator.pt
+# schema: ./pretrained/compliance-v1/schema.json
+# index_dir: ./pretrained/compliance-v1/evidence_index
+
+mode: both
+output_format: nested
+top_k: 5
+n_samples: 4
+temperature: 0.8
+alpha: 0.1

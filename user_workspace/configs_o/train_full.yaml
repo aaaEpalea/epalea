@@ -1,0 +1,20 @@
+domain: compliance
+predicate: compliance_level
+domain_values: [low, medium, high]
+data_dir: ./user_workspace/data/compliance
+checkpoint_dir: ./user_workspace/checkpoints/compliance
+n_seeds: 7
+embedding_dim: 384
+latent_dim: 64
+epochs: 50
+early_stopping_patience: 15
+learning_rate: 0.001
+kl_weight: 0.01
+evidence_files:
+  - ./user_workspace/data/compliance/train_evidence.json
+  - ./user_workspace/data/compliance/val_evidence.json
+index_dir: ./user_workspace/index/compliance
+aggregator_hidden_dim: 128
+aggregator_dropout: 0.1
+aggregator_epochs: 30
+aggregator_learning_rate: 0.001

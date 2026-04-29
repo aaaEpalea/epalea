@@ -1,0 +1,17 @@
+# epalea index — config
+# Adds test evidence to the existing index built during epalea train.
+# Run: epalea index --config ./user_workspace/configs/index.yaml
+#
+# Only needed for test evidence. Train and val evidence are indexed
+# automatically during epalea train.
+
+checkpoint: ./user_workspace/checkpoints/[your_domain]/best_model.pt
+schema: ./user_workspace/checkpoints/[your_domain]/schema.json
+evidence_files:
+  - ./user_workspace/data/[your_domain]/test_evidence.json
+predicate: [your_predicate]
+
+# index_dir must match the data_dir used during training —
+# that is where epalea train wrote the index.
+index_dir: ./user_workspace/data/[your_domain]
+embedding_dim: 384

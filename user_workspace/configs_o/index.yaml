@@ -1,0 +1,8 @@
+checkpoint: ./user_workspace/checkpoints/compliance/best_model.pt
+schema: ./user_workspace/checkpoints/compliance/schema.json
+evidence_files:
+  - ./user_workspace/data/compliance/train_evidence.json
+  - ./user_workspace/data/compliance/val_evidence.json
+predicate: compliance_level
+index_dir: ./user_workspace/index/compliance
+embedding_dim: 384

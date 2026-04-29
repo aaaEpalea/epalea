@@ -1,0 +1,10 @@
+checkpoint: ./pretrained/compliance-v1/best_model.pt
+aggregator_checkpoint: ./pretrained/compliance-v1/aggregator.pt
+schema: ./pretrained/compliance-v1/schema.json
+index_dir: ./pretrained/compliance-v1/evidence_index
+mode: spn
+output_format: nested
+top_k: 5
+n_samples: 4
+temperature: 0.8
+alpha: 0.1

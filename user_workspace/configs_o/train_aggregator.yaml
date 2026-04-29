@@ -1,0 +1,10 @@
+checkpoint: ./user_workspace/checkpoints/compliance/best_model.pt
+schema: ./user_workspace/checkpoints/compliance/schema.json
+index_dir: ./user_workspace/index/compliance
+data_dir: ./user_workspace/data/compliance
+aggregator_checkpoint_dir: ./user_workspace/checkpoints/compliance
+latent_dim: 64
+hidden_dim: 128
+dropout: 0.1
+epochs: 30
+learning_rate: 0.001

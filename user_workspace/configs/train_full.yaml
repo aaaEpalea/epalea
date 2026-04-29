@@ -1,0 +1,28 @@
+# epalea train-full — config
+# Runs Stage 1 (train LPF) + Stage 2 (train aggregator) together.
+# Run: epalea train-full --config ./user_workspace/configs/train_full.yaml
+#
+# After train-full completes, run epalea index to add test evidence
+# before running inference or evaluate.
+
+# ── Stage 1: LPF base model training ──────────────────────────────────────
+# Also indexes train and val evidence automatically into data_dir.
+domain: [your_domain]
+predicate: [your_predicate]
+domain_values: [[value1], [value2], [value3]]
+data_dir: ./user_workspace/data/[your_domain]
+checkpoint_dir: ./user_workspace/checkpoints/[your_domain]
+n_seeds: 7
+embedding_dim: 384
+latent_dim: 64
+epochs: 50
+early_stopping_patience: 15
+learning_rate: 0.001
+kl_weight: 0.01
+
+# ── Stage 2: Aggregator training ──────────────────────────────────────────
+# Uses the index written to data_dir during Stage 1.
+aggregator_hidden_dim: 128
+aggregator_dropout: 0.1
+aggregator_epochs: 30
+aggregator_learning_rate: 0.001

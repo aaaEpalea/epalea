@@ -1,0 +1,17 @@
+# Built-in compliance domain preset
+domain: compliance
+predicate: compliance_level
+variable_name: compliance
+domain_values: [low, medium, high]
+label_key: compliance_level
+
+n_entities: 300
+years: [2022]
+evidence_per_entity: 5
+noise_level: 0.1
+contradictory_rate: 0.05
+
+class_weights:
+  low: 0.2
+  medium: 0.5
+  high: 0.3

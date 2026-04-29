@@ -1,0 +1,18 @@
+# epalea train — config
+# Run: epalea train --config ./user_workspace/configs/train.yaml
+
+domain: [your_domain]                          # e.g. compliance, loan_risk
+predicate: [your_predicate]                    # e.g. compliance_level, risk_tier
+domain_values: [[value1], [value2], [value3]]  # e.g. [low, medium, high]
+data_dir: ./user_workspace/data/[your_domain]
+checkpoint_dir: ./user_workspace/checkpoints/[your_domain]
+n_seeds: 7
+embedding_dim: 384
+latent_dim: 64
+epochs: 50
+early_stopping_patience: 15
+learning_rate: 0.001
+kl_weight: 0.01
+
+# Note: train also indexes train and val evidence automatically into data_dir.
+# You do not need a separate index step for those splits.
