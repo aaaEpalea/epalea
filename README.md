@@ -25,9 +25,9 @@ import epalea
 model = epalea.load_model("compliance-v1")  # downloads from HF automatically
 
 result = model.infer(entity_id="C0001", mode="both")
-print(result.results.spn.prediction)        # "high"
-print(result.results.aggregator.confidence) # 0.81
-print(result.uncertainty.epistemic)         # 0.12
+print(result.results.spn.prediction)        
+print(result.results) 
+print(result.uncertainty)        
 ```
 
 ## CLI
